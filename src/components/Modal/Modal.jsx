@@ -3,7 +3,13 @@ import React, { Component } from 'react';
 import styles from './Modal.module.css';
 
 export default class Modal extends Component {
-  static propTypes = {};
+  static propTypes = {
+    photo: PropTypes.exact({
+      largePhoto: PropTypes.string.isRequired,
+      photoDescr: PropTypes.string.isRequired,
+    }).isRequired,
+    closeModal: PropTypes.func.isRequired,
+  };
 
   componentDidMount() {
     window.addEventListener('keydown', this.onPressEsc);
@@ -15,13 +21,13 @@ export default class Modal extends Component {
 
   onPressEsc = e => {
     if (e.code === 'Escape') {
-      this.props.onModalClose();
+      this.props.closeModal();
     }
   };
 
   onOverlayClick = e => {
     if (e.target === e.currentTarget) {
-      this.props.onModalClose();
+      this.props.closeModal();
     }
   };
 

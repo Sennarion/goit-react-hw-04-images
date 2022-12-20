@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { ImageGalleryItem } from 'components';
 import styles from './ImageGallery.module.css';
 
-function ImageGallery({ photos, onModalOpen }) {
+function ImageGallery({ photos, openModal }) {
   return (
     <ul className={styles.ImageGallery}>
       {photos.map(({ id, webformatURL, largeImageURL, tags }) => (
@@ -11,13 +11,19 @@ function ImageGallery({ photos, onModalOpen }) {
           smallPhoto={webformatURL}
           largePhoto={largeImageURL}
           photoDescr={tags}
-          onModalOpen={onModalOpen}
+          openModal={openModal}
         />
       ))}
     </ul>
   );
 }
 
-ImageGallery.propTypes = {};
+ImageGallery.propTypes = {
+  photos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }).isRequired
+  ).isRequired,
+};
 
 export default ImageGallery;

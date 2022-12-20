@@ -35,6 +35,7 @@ export default class App extends Component {
 
         if (photos.length === 0) {
           this.setState({ isInvalidQuery: true });
+          return;
         }
 
         if (photos.length > 0 && this.state.page === 1) {
@@ -66,11 +67,11 @@ export default class App extends Component {
     });
   };
 
-  onModalOpen = modalImg => {
+  openModal = modalImg => {
     this.setState({ modalImg });
   };
 
-  onModalClose = () => {
+  closeModal = () => {
     this.setState({ modalImg: null });
   };
 
@@ -81,10 +82,8 @@ export default class App extends Component {
     return (
       <div className={styles.App}>
         <Searchbar onSubmit={this.onFormSubmit} />
-        <ImageGallery photos={photos} onModalOpen={this.onModalOpen} />
-        {modalImg && (
-          <Modal photo={modalImg} onModalClose={this.onModalClose} />
-        )}
+        <ImageGallery photos={photos} openModal={this.openModal} />
+        {modalImg && <Modal photo={modalImg} closeModal={this.closeModal} />}
         {isInvalidQuery && <ErrorMessage />}
         {isLoading && <Loader />}
         {isBtnShow && <Button onClick={this.onBtnClick}>Load more</Button>}

@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import styles from './ImageGalleryItem.module.css';
 
-function ImageGalleryItem({ smallPhoto, largePhoto, photoDescr, onModalOpen }) {
+function ImageGalleryItem({ smallPhoto, largePhoto, photoDescr, openModal }) {
   return (
     <li
       className={styles.ImageGalleryItem}
-      onClick={() => onModalOpen({ largePhoto, photoDescr })}
+      onClick={() => openModal({ largePhoto, photoDescr })}
     >
       <img
         className={styles.ImageGalleryItemImage}
@@ -17,6 +17,11 @@ function ImageGalleryItem({ smallPhoto, largePhoto, photoDescr, onModalOpen }) {
   );
 }
 
-ImageGalleryItem.propTypes = {};
+ImageGalleryItem.propTypes = {
+  smallPhoto: PropTypes.string.isRequired,
+  largePhoto: PropTypes.string.isRequired,
+  photoDescr: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
+};
 
 export default ImageGalleryItem;
