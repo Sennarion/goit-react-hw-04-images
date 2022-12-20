@@ -4,3 +4,4 @@ export { default as ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem
 export { default as Loader } from './Loader/Loader';
 export { default as Modal } from './Modal/Modal';
 export { default as Searchbar } from './Searchbar/Searchbar';
+export { default as ErrorMessage } from './ErrorMessage/ErrorMessage';
