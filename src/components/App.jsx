@@ -33,12 +33,12 @@ export default class App extends Component {
           this.state.page
         );
 
-        if (photos.length === 0) {
+        if (totalHits === 0) {
           this.setState({ isInvalidQuery: true });
           return;
         }
 
-        if (photos.length > 0 && this.state.page === 1) {
+        if (this.state.page === 1) {
           toast.info(`We found ${totalHits} images for you`);
         }
 
