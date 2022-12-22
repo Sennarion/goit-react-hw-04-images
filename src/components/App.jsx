@@ -13,7 +13,7 @@ const initialState = {
   isLoading: false,
   isBtnShow: false,
   modalImg: null,
-  isInvalidQuery: false,
+  error: null,
 };
 
 export default class App extends Component {
@@ -21,32 +21,28 @@ export default class App extends Component {
     ...initialState,
   };
 
-  async componentDidUpdate(prepProps, prevState) {
-    if (
-      prevState.query !== this.state.query ||
-      prevState.page !== this.state.page
-    ) {
-      this.setState({ isLoading: true });
+  async componentDidUpdate(_, prevState) {
+    const { query, page } = this.state;
+
+    if (prevState.query !== query || prevState.page !== page) {
       try {
-        const { hits: photos, totalHits } = await api.getPhotos(
-          this.state.query,
-          this.state.page
-        );
+        this.setState({ isLoading: true });
+        const { hits: photos, totalHits } = await api.getPhotos(query, page);
 
         if (totalHits === 0) {
-          this.setState({ isInvalidQuery: true });
-          return;
+          throw new Error(`We didn't find photos by query "${query}"`);
         }
 
-        if (this.state.page === 1) {
+        if (page === 1) {
           toast.info(`We found ${totalHits} images for you`);
         }
 
         this.setState(prevState => ({
           photos: [...prevState.photos, ...photos],
-          isBtnShow: this.state.page < Math.ceil(totalHits / 12),
+          isBtnShow: page < Math.ceil(totalHits / 12),
         }));
       } catch (error) {
+        this.setState({ error: error.message });
         toast.error(error.message);
       } finally {
         this.setState({ isLoading: false });
@@ -76,15 +72,14 @@ export default class App extends Component {
   };
 
   render() {
-    const { photos, isBtnShow, isLoading, modalImg, isInvalidQuery } =
-      this.state;
+    const { photos, isBtnShow, isLoading, modalImg, error } = this.state;
 
     return (
       <div className={styles.App}>
         <Searchbar onSubmit={this.onFormSubmit} />
         <ImageGallery photos={photos} openModal={this.openModal} />
         {modalImg && <Modal photo={modalImg} closeModal={this.closeModal} />}
-        {isInvalidQuery && <ErrorMessage />}
+        {error && <ErrorMessage message={error} />}
         {isLoading && <Loader />}
         {isBtnShow && <Button onClick={this.onBtnClick}>Load more</Button>}
         <ToastContainer autoClose={1000} />
