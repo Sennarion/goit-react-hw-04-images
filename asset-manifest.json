@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-03-image-finder/static/css/main.cc8300ad.css",
-    "main.js": "/goit-react-hw-03-image-finder/static/js/main.2c8370dc.js",
-    "static/media/crying-cat.jpeg": "/goit-react-hw-03-image-finder/static/media/crying-cat.f1fb6d200bf9fa4a0349.jpeg",
-    "index.html": "/goit-react-hw-03-image-finder/index.html",
-    "static/media/search_icon.svg": "/goit-react-hw-03-image-finder/static/media/search_icon.61f5f41a2f49b4fb064a.svg",
-    "main.cc8300ad.css.map": "/goit-react-hw-03-image-finder/static/css/main.cc8300ad.css.map",
-    "main.2c8370dc.js.map": "/goit-react-hw-03-image-finder/static/js/main.2c8370dc.js.map"
+    "main.css": "/goit-react-hw-04-images/static/css/main.534aca2e.css",
+    "main.js": "/goit-react-hw-04-images/static/js/main.aad085e0.js",
+    "static/media/crying-cat.jpeg": "/goit-react-hw-04-images/static/media/crying-cat.f1fb6d200bf9fa4a0349.jpeg",
+    "index.html": "/goit-react-hw-04-images/index.html",
+    "static/media/search_icon.svg": "/goit-react-hw-04-images/static/media/search_icon.61f5f41a2f49b4fb064a.svg",
+    "main.534aca2e.css.map": "/goit-react-hw-04-images/static/css/main.534aca2e.css.map",
+    "main.aad085e0.js.map": "/goit-react-hw-04-images/static/js/main.aad085e0.js.map"
   },
   "entrypoints": [
-    "static/css/main.cc8300ad.css",
-    "static/js/main.2c8370dc.js"
+    "static/css/main.534aca2e.css",
+    "static/js/main.aad085e0.js"
   ]
 }
